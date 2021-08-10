@@ -54,5 +54,5 @@ Save really should follow the same logic as `destroy`, although I think a situat
 ## Extra notes
 
 1. Currently, there is some functionallity where a specific terminus is required. We would really like that multifact can act as these specialized termini. However, we can't know if multifact is solving the problems that this requirement comes from. So here's some speculation about possible terminus issues that might cause this, so we can think about solutions:  
-    a. Trusted facts - if getting facts from a JSON or YAML fact terminus, how can we trust trusted facts again? They aren't signed in these formats, and an attacker could modify files on disk within reason. A counter argument there - if an attacker has root write access on the file sytsem, couldn't they modify ruby code to skip the PuppetDB terminus check?
+        a. Trusted facts - if getting facts from a JSON or YAML fact terminus, how can we trust trusted facts again? They aren't signed in these formats, and an attacker could modify files on disk within reason. A counter argument there - if an attacker has root write access on the file sytsem, couldn't they modify ruby code to skip the PuppetDB terminus check?
 
