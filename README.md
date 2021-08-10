@@ -49,7 +49,7 @@ We abort on first exception, and raise the offender back up. This makes order ve
 
 ### save(instance)
 
-Save really should follow the same logic as `destroy`, although I think a situation where `destroy` takes an abort-early approach, and `save` takes a tough-it-out approach very feasible. `destroy` is a deliberate attempt to get different values on the next read, so a failed destroy will be reflected in the next read if the same attempt order is used. But `save` is an attempt to persist data for a number of different reasons. Each terminus could have its own reasons for persistence, and we should give each one a shot at holding on.
+Save really should follow the same logic as `destroy`, although I think a situation where `destroy` takes an abort-early approach, and `save` takes a tough-it-out approach very feasible. `destroy` is a deliberate attempt to get different values on the next read, so a failed destroy will be reflected in the next read if the same attempt order is used. But `save` is an attempt to persist data for a number of different reasons. Each terminus could have its own reasons for persistence, and so we should give each one an attempt no matter what. The main example in my head is the HDP example - we want to persist data for historical auditing purposes. If PuppetDB fails to accept a write, we still want to save that data. So after PuppetDB's exception, continue to call save with HDP, but then re-reaise so the caller knows PuppetDB failed.
 
 ## Extra notes
 
